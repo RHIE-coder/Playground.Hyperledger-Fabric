@@ -52,6 +52,7 @@ function checkPrereqs() {
   ## Check if your have cloned the peer binaries and configuration files.
   peer version > /dev/null 2>&1
 
+  # ../config 는 Legacy 디렉토리인데 왜 체크하는...
   if [[ $? -ne 0 || ! -d "../config" ]]; then
     errorln "Peer binary and configuration files not found.."
     errorln
