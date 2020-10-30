@@ -152,8 +152,8 @@ func (s *SmartContract) TransferAsset(ctx contractapi.TransactionContextInterfac
 		return err
 	}
 
-	assetFrom.Energy := assetFrom.Energy - energy
-	assetTo.Energy := assetTo.Energy + energy
+	assetFrom.Energy = assetFrom.Energy - energy
+	assetTo.Energy = assetTo.Energy + energy
 
 	assetFromJSON, err := json.Marshal(assetFrom)
 	if err != nil {
