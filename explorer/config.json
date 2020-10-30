@@ -1,0 +1,9 @@
+{
+	"network-configs": {
+		"flea-market": {
+			"name": "flea-market",
+			"profile": "./connection-profile/flea-market.json"
+		}
+	},
+	"license": "Apache-2.0"
+}

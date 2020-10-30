@@ -1,0 +1,59 @@
+{
+	"name": "flea-market",
+	"version": "1.0.0",
+	"client": {
+		"tlsEnable": true,
+		"adminCredential": {
+			"id": "admin",
+			"password": "1234"
+		},
+		"enableAuthentication": true,
+		"organization": "Org1MSP",
+		"connection": {
+			"timeout": {
+				"peer": {
+					"endorser": "300"
+				},
+				"orderer": "300"
+			}
+		}
+	},
+	"channels": {
+		"mychannel": {
+			"peers": {
+				"peer0.org1.flea.com": {}
+			},
+			"connection": {
+				"timeout": {
+					"peer": {
+						"endorser": "6000",
+						"eventHub": "6000",
+						"eventReg": "6000"
+					}
+				}
+			}
+		}
+	},
+	"organizations": {
+		"Org1MSP": {
+			"mspid": "Org1MSP",
+			"adminPrivateKey": {
+				"path": "/tmp/crypto/peerOrganizations/org1.flea.com/users/Admin@org1.flea.com/msp/keystore/priv_sk"
+			},
+			"peers": [
+				"peer0.org1.flea.com"
+			],
+			"signedCert": {
+				"path": "/tmp/crypto/peerOrganizations/org1.flea.com/users/Admin@org1.flea.com/msp/signcerts/Admin@org1.flea.com-cert.pem"
+			}
+		}
+	},
+	"peers": {
+		"peer0.org1.flea.com": {
+			"tlsCACerts": {
+				"path": "/tmp/crypto/peerOrganizations/org1.flea.com/peers/peer0.org1.flea.com/tls/ca.crt"
+			},
+			"url": "grpcs://peer0.org1.flea.com:7051"
+		}
+	}
+}
