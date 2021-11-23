@@ -1,24 +1,22 @@
-function if_logined_redirect_home(req, res, next){
-    console.log("[if_logined_redirect_home] is invoked")
-    
-    if(req.isAuthenticated()){
+function logined_redirect_home(req, res, next) {
+    console.log('logined_redirect_home() is invoked : ' + req.isAuthenticated());
+    if (req.isAuthenticated()) {
         res.redirect('/');
-    }else{
+    } else {
         next();
     }
 }
 
-function if_not_logined_redirect_login(req, res, next){
-    console.log("[if_not_logined_redirect_login] is invoked")
-    
-    if(req.isAuthenticated()){
+function not_logined_redirect_login(req, res, next) {
+    console.log('not_logined_redirect_login() is invoked : ' + req.isAuthenticated());
+    if (req.isAuthenticated()) {
         next();
-    }else{
+    } else {
         res.redirect('/login');
     }
 }
 
 module.exports = {
-    if_logined_redirect_home,
-    if_not_logined_redirect_login,
+    logined_redirect_home,
+    not_logined_redirect_login,
 }

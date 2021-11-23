@@ -1,9 +1,3 @@
-// ajax (Web API) : callback 형태
-// - JQuery X : XMLHttpRequest 
-// - JQuery O : 아래와 같이 사용
-// fetch (Web API) : promise 형태
-// - url, payload, header, mime type 등을 정의해서 함수로 만들어 import해서 사용
-
 $(window).on('load', function(){
     $.ajax({
         url: '/check/login',
@@ -19,16 +13,38 @@ $(window).on('load', function(){
                 }
                 remove_list.forEach(elem=>elem.remove());
                 
-                const $profile = document.createElement("a");
-                $profile.href = "/profile";
-                $profile.text = "프로필";
-                const $logout = document.createElement("a");
-                $logout.href = "/logout";
-                $logout.text = "로그아웃";
-                h1_element.after($logout);
-                h1_element.after(" : ");
-                h1_element.after($profile);
+                const a_element = document.createElement("a");
+                a_element.href = "/profile";
+                a_element.text = "프로필";
+                h1_element.after(a_element);
+
             }
         }
     })
 })
+
+// function addElements(of, items) {
+
+//     let stack = [];
+
+//     for (const property in items) {
+//         const div_element = document.createElement("div")
+//         const span_element = document.createElement("span")
+//         div_element.innerText = `${property}:::`
+//         span_element.style = "color:yellow;background-color:red"
+//         span_element.id = `${property}`
+//         span_element.innerText = items[property]
+//         stack.push(span_element)
+//         stack.push(div_element)
+//     }
+
+//     of.after("<br><br>")
+
+//     while (stack.length !== 0) {
+//         const divElement = stack.pop();
+//         divElement.append(stack.pop())
+//         of.after(divElement)
+//     }
+
+//     stack = null;
+// }

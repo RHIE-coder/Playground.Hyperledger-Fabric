@@ -1,30 +1,34 @@
-const router = require('express').Router();
+const router = require('express').Router()
+const {
+    logined_redirect_home,
+    not_logined_redirect_login,
+} = require("../../middleware/access_control")
 
 module.exports = {
     params : ['passport'],
     routers,
 }
 
-function routers(passport) {
+function routers(passport){
     router.post('/login',passport.authenticate('local-login',{
         successRedirect: '/',
-        failureRedirect: '/login',
-    }));
+        failureRedirect: '/login'
+    }))
 
-    router.post('/signup',passport.authenticate('local-signup', {
+    router.post('/signup',passport.authenticate('local-signup',{
         successRedirect: '/',
-        failureRedirect: '/signup',
-    }));
+        failureRedirect: '/signup'
+    }))
 
-    router.post('/check/login', (req,res)=>{
-        const isLogin = req.isAuthenticated();
-        res.send({isLogin});
-    });
-
-    router.get('/logout', (req,res)=>{
+    router.get('/logout', not_logined_redirect_login, (req,res)=>{
         req.logout();
-        res.redirect('/');
+        res.render('index');
     })
 
-    return router;
+    router.post('/check/login', (req, res) => {
+        const isLogin = req.isAuthenticated();
+        res.send({isLogin});
+    })
+
+    return router
 }

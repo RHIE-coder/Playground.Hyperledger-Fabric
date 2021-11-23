@@ -1,22 +1,19 @@
-const { login , signup } = require('./passport_strategy/local-strategy');
+var {login, signup} = require('./passport_strategy/local-strategy');
 
-module.exports.init = function(passport){
-    // Strategy가 성공하면 호출됨
-    // `done(null, user)`로부터 user를 받고 세션에 저장
-    // 세션의 위치 : `req.session.passport.user`
-    passport.serializeUser(function(user, done){
-        console.log("[inform]the serializeUser function has been invoked")
+module.exports.init = function (passport) {
+    // 사용자 인증 성공 시 호출
+    passport.serializeUser(function (user, done) {
+        console.log('serializeUser() 호출됨.');
         done(null, user);
-    })
+    });
 
-    // serializeUser의 done()에서 넘겨준 user를 받는다.
-    // (저장된 세션 정보 req.session.passport.user와 DB를 조회해 비교할 수도 있음)
-    // 다시 done()을 호출하고 세션에 정보를 넘긴다.
-    passport.deserializeUser(function(user, done){
-        console.log("[inform]the deserializeUser function has been invoked")
+    // 사용자 인증 이후 사용자 요청이 있을 때마다 호출
+    passport.deserializeUser(function (user, done) {
+        console.log('deserializeUser()  호출됨');
         done(null, user);
-    })
+    });
 
-    passport.use('local-login',login)
-    passport.use('local-signup',signup)
-}
+    // 인증방식  local-signup
+    passport.use('local-login', login);
+    passport.use('local-signup', signup);
+};
