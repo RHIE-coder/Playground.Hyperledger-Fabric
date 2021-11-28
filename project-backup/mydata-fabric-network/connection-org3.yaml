@@ -1,0 +1,28 @@
+---
+name: mydata-fabric-network-org3
+version: 1.0.0
+client:
+  organization: Org3
+  connection:
+    timeout:
+      peer:
+        endorser: '300'
+organizations:
+  Org3:
+    mspid: Org3MSP
+    peers:
+    - peer0.org3.mydata.com
+    - peer1.org3.mydata.com
+peers:
+  peer0.org3.mydata.com:
+    url: grpcs://localhost:11051
+    tlsCACerts:
+      path: org3-artifacts/crypto-config/peerOrganizations/org3.mydata.com/tlsca/tlsca.org3.mydata.com-cert.pem
+    grpcOptions:
+      ssl-target-name-override: peer0.org3.mydata.com
+  peer1.org3.mydata.com:
+    url: grpcs://localhost:12051
+    tlsCACerts:
+      path: org3-artifacts/crypto-config/peerOrganizations/org3.mydata.com/tlsca/tlsca.org3.mydata.com-cert.pem
+    grpcOptions:
+      ssl-target-name-override: peer1.org3.mydata.com
